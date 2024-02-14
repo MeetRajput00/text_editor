@@ -1,30 +1,25 @@
+#include "../common/common_includes.h"
 #include <SFML/Window.hpp>
-#include <iostream>
-#include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <string.h>
-#include <SFML/Graphics/RectangleShape.hpp>
+#include "../include/Text.h"
+#include "../include/Cursor.h"
 
 class CustomWindow{
 public:	
-	struct{
-		int x;
-		int y;
-		int currLine;
-	}pos;
 	sf::RenderWindow window;
-	sf::Text text;
-	sf::Font font;
-	sf::RectangleShape cursor;
-	sf::Clock clock; // create a clock for the blinking effect
+	sf::Clock clock; // create a clock for the blinking effect    
+	Text text;
+    Cursor cursor;
 	int CharacterSize;
 	CustomWindow(){
     	window.create(sf::VideoMode(800, 600), "Text editor");
     	window.setFramerateLimit(60);
     	window.setKeyRepeatEnabled(true); 
 	}
-	void initialize_text();
 	void start_window();
-	void handle_events(sf::Event *event, sf::RenderWindow *window);
-	void initialize_cursor();
+private:
+	void handle_events(sf::Event *event);
+	void handle_keyboard_input(sf::Event *event);
+	void draw_text();
+	void handle_cursor_visibility();
 };
