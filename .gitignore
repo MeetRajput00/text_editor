@@ -17,3 +17,7 @@
 bin
 release
 scripts
+
+bin/
+release/
+scripts/
